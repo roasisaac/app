@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Search, ChevronDown } from 'lucide-react';
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Header: React.FC = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const [posts, setPosts] = useState([
     { author: 'Simple Man', date: '4. Sept', content: 'The greatest show of strength in a man is self-denial.', category: 'Principles' },
   ]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleProfileClick = () => {
     setIsPopoverOpen(!isPopoverOpen);
@@ -24,7 +25,7 @@ const Header: React.FC = () => {
     setActiveMenuItem(item);
   };
 
-  const handleNewPostChange = (e) => setNewPost(e.target.value);
+  const handleNewPostChange = (e: React.ChangeEvent<HTMLInputElement>) => setNewPost(e.target.value);
 
   const handleAddPost = () => {
     if (newPost.trim() !== '') {
@@ -67,66 +68,76 @@ const Header: React.FC = () => {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Search "
+                placeholder="Search"
                 className="pl-10 pr-4 py-1 border rounded-full focus:outline-none focus:ring-2 focus:ring-gray-200 text-sm"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
             </div>
-            
-            {/* Profile Dropdown */}
-            <div className="relative">
-              <div
-                className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center cursor-pointer"
-                onClick={handleProfileClick}
-              >
-                <ChevronDown className="text-white" size={16} />
-              </div>
+            {isLoggedIn ? (
+              /* Profile Dropdown */
+              <div className="relative">
+                <div
+                  className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center cursor-pointer"
+                  onClick={handleProfileClick}
+                >
+                  <ChevronDown className="text-white" size={16} />
+                </div>
 
-              {isPopoverOpen && (
-                <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-300 rounded-lg z-10">
-                  <div className="p-4">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-10 h-10 bg-orange-400 rounded-full" />
-                      <div>
-                        <h3 className="font-semibold">McRitchi</h3>
-                        <p className="text-sm text-gray-500">@mcritchi</p>
+                {isPopoverOpen && (
+                  <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-300 rounded-lg z-10">
+                    <div className="p-4">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-10 h-10 bg-orange-400 rounded-full" />
+                        <div>
+                          <h3 className="font-semibold">McRitchi</h3>
+                          <p className="text-sm text-gray-500">@mcritchi</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <hr className="border-gray-200" />
-                  <div className="p-2">
-                    {['Home', 'Inbox', 'Chat', 'Activity', 'Explore'].map((tab) => (
-                      <button
-                        key={tab}
-                        onClick={() => handleTabSelect(tab)}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        {tab}
+                    <hr className="border-gray-200" />
+                    <div className="p-2">
+                      {['Home', 'Inbox', 'Chat', 'Activity', 'Explore'].map((tab) => (
+                        <button
+                          key={tab}
+                          onClick={() => handleTabSelect(tab)}
+                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                        >
+                          {tab}
+                        </button>
+                      ))}
+                    </div>
+                    <hr className="border-gray-200" />
+                    <div className="p-2">
+                      <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Settings
                       </button>
-                    ))}
+                      <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Support
+                      </button>
+                      <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        Sign out
+                      </button>
+                    </div>
+                    <hr className="border-gray-200" />
+                    <div className="p-2 text-center text-xs text-gray-500">
+                      <p>About</p>
+                      <p>Privacy</p>
+                      <p>Terms</p>
+                      <p>Collection notice</p>
+                    </div>
                   </div>
-                  <hr className="border-gray-200" />
-                  <div className="p-2">
-                    <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Settings
-                    </button>
-                    <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Support
-                    </button>
-                    <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                      Sign out
-                    </button>
-                  </div>
-                  <hr className="border-gray-200" />
-                  <div className="p-2 text-center text-xs text-gray-500">
-                    <p>About</p>
-                    <p>Privacy</p>
-                    <p>Terms</p>
-                    <p>Collection notice</p>
-                  </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            ) : (
+              <div className='flex gap-5'>
+                <button className='bg-gray-100 p-3 rounded-lg font-semibold hover:bg-gray-200'>
+                  Sign in
+                </button>
+                <button className='bg-orange-500 p-3 rounded-lg font-semibold hover:bg-orange-600 text-white'>
+                  Create Account
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <hr className="border-t border-gray-200" />
@@ -138,9 +149,7 @@ const Header: React.FC = () => {
       {/* Scrollable subheader with larger, instant-change tabs */}
       <div className="bg-white py-4 px-4">
         <div className="flex justify-start space-x-3 overflow-x-auto text-sm">
-          {[
-            'Home', 'Principles', 'Templates',
-          ].map(item => (
+          {['Home', 'Principles', 'Templates'].map(item => (
             <button
               key={item}
               onClick={() => handleMenuItemClick(item)}
@@ -152,10 +161,6 @@ const Header: React.FC = () => {
         </div>
       </div>
       <hr className="border-t border-gray-200" />
-
-
-
-   
     </>
   );
 };
