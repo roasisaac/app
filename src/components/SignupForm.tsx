@@ -3,7 +3,12 @@ import React from 'react'
 const SignupForm: React.FC = () => {
     return (
         <div className='bg-white'>
-            Form
+            <form action="#">
+                <div>
+                    <input type="text" placeholder='Name' />
+                    <input type="text" placeholder='Email' />
+                </div>
+            </form>
         </div>
     );
 }

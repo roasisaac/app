@@ -6,6 +6,7 @@ import Tresor from "./pages/tresor"
 import Activity from "./pages/Acitivity"
 import Trends from "./pages/trends"
 import BusinessCard from "./pages/BusinessCard"
+import SignupForm from "./components/SignupForm"
 export default function App() {
   return (
     <div>
@@ -19,9 +20,9 @@ export default function App() {
           <Route path="/activity" element={<Activity />} />
           <Route path="/trends" element={<Trends />} />
           <Route path="/businesscard" element={<BusinessCard />} />
+          <Route path="/signup" element={<SignupForm />} />
         </Routes>
       </BrowserRouter>
-
     </div>
   )
 }

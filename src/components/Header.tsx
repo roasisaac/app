@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const [posts, setPosts] = useState([
     { author: 'Simple Man', date: '4. Sept', content: 'The greatest show of strength in a man is self-denial.', category: 'Principles' },
   ]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleProfileClick = () => {
     setIsPopoverOpen(!isPopoverOpen);
