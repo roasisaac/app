@@ -6,7 +6,6 @@ const Header: React.FC = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState('Home');
   const [activeMenuItem, setActiveMenuItem] = useState('U.S. Election');
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [newPost, setNewPost] = useState('');
   const [posts, setPosts] = useState([
     { author: 'Simple Man', date: '4. Sept', content: 'The greatest show of strength in a man is self-denial.', category: 'Principles' },
@@ -73,68 +72,61 @@ const Header: React.FC = () => {
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
             </div>
-
+            
             {/* Profile Dropdown */}
-            {isLoggedIn ? (
-              <div className="relative">
-                <div
-                  className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center cursor-pointer"
-                  onClick={handleProfileClick}
-                >
-                  <ChevronDown className="text-white" size={16} />
-                </div>
+            <div className="relative">
+              <div
+                className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center cursor-pointer"
+                onClick={handleProfileClick}
+              >
+                <ChevronDown className="text-white" size={16} />
+              </div>
 
-                {isPopoverOpen && (
-                  <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-300 rounded-lg z-10">
-                    <div className="p-4">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-10 h-10 bg-orange-400 rounded-full" />
-                        <div>
-                          <h3 className="font-semibold">McRitchi</h3>
-                          <p className="text-sm text-gray-500">@mcritchi</p>
-                        </div>
+              {isPopoverOpen && (
+                <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-300 rounded-lg z-10">
+                  <div className="p-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-10 h-10 bg-orange-400 rounded-full" />
+                      <div>
+                        <h3 className="font-semibold">McRitchi</h3>
+                        <p className="text-sm text-gray-500">@mcritchi</p>
                       </div>
                     </div>
-                    <hr className="border-gray-200" />
-                    <div className="p-2">
-                      {['Home', 'Inbox', 'Chat', 'Activity', 'Explore'].map((tab) => (
-                        <button
-                          key={tab}
-                          onClick={() => handleTabSelect(tab)}
-                          className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                        >
-                          {tab}
-                        </button>
-                      ))}
-                    </div>
-                    <hr className="border-gray-200" />
-                    <div className="p-2">
-                      <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        Settings
-                      </button>
-                      <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        Support
-                      </button>
-                      <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                        Sign out
-                      </button>
-                    </div>
-                    <hr className="border-gray-200" />
-                    <div className="p-2 text-center text-xs text-gray-500">
-                      <p>About</p>
-                      <p>Privacy</p>
-                      <p>Terms</p>
-                      <p>Collection notice</p>
-                    </div>
                   </div>
-                )}
-              </div>
-            ) : (
-              <div className='flex gap-3'>
-                <button className='p-3 rounded-lg font-semibold bg-gray-200 hover:bg-gray-300 transition-all duration-200 ease-in'>Sign in</button>
-                <button className='p-3 rounded-lg font-semibold bg-orange-500 hover:bg-orange-600 transition-all duration-200 ease-in'>Create account</button>
-              </div>
-            )}
+                  <hr className="border-gray-200" />
+                  <div className="p-2">
+                    {['Home', 'Inbox', 'Chat', 'Activity', 'Explore'].map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => handleTabSelect(tab)}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {tab}
+                      </button>
+                    ))}
+                  </div>
+                  <hr className="border-gray-200" />
+                  <div className="p-2">
+                    <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Settings
+                    </button>
+                    <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Support
+                    </button>
+                    <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Sign out
+                    </button>
+                  </div>
+                  <hr className="border-gray-200" />
+                  <div className="p-2 text-center text-xs text-gray-500">
+                    <p>About</p>
+                    <p>Privacy</p>
+                    <p>Terms</p>
+                    <p>Collection notice</p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <hr className="border-t border-gray-200" />
@@ -144,28 +136,26 @@ const Header: React.FC = () => {
       <div className="h-[0px]"></div>
 
       {/* Scrollable subheader with larger, instant-change tabs */}
-      {isLoggedIn ? (
-        <div>
-          <div className="bg-white py-4 px-4">
-            <div className="flex justify-start space-x-3 overflow-x-auto text-sm">
-              {[
-                'Home', 'Principles', 'Templates',
-              ].map(item => (
-                <button
-                  key={item}
-                  onClick={() => handleMenuItemClick(item)}
-                  className={`px-4 py-2 rounded-full ${activeMenuItem === item ? 'bg-[#393838] text-white' : 'bg-gray-100 text-[#393838]'} hover:bg-gray-200`}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
-          <hr className="border-t border-gray-200" />
+      <div className="bg-white py-4 px-4">
+        <div className="flex justify-start space-x-3 overflow-x-auto text-sm">
+          {[
+            'All', 'Principles', 'Templates',
+          ].map(item => (
+            <button
+              key={item}
+              onClick={() => handleMenuItemClick(item)}
+              className={`px-4 py-2 rounded-full ${activeMenuItem === item ? 'bg-[#393838] text-white' : 'bg-gray-100 text-[#393838]'} hover:bg-gray-200`}
+            >
+              {item}
+            </button>
+          ))}
         </div>
-      ) : (
-          ''
-      )}
+      </div>
+      <hr className="border-t border-gray-200" />
+
+
+
+   
     </>
   );
 };
