@@ -1,71 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
-import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card";
+import React from 'react';
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { GithubIcon } from 'lucide-react'; // You can import Lucide React Icons as needed
+import { IconBrandMeta } from '@tabler/icons-react'; // Import Meta icon from Tabler Icons
 
 const LoginPage = () => {
-  const [timeLeft, setTimeLeft] = useState(600); // 600 seconds = 10 minutes
-  const navigate = useNavigate(); // Initialize navigate
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prevTime) => (prevTime > 0 ? prevTime - 1 : 0));
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  // Function to redirect to onboarding page
-  const handleUnlock = () => {
-    navigate('/credentials'); // Navigate to /onboarding
-  };
-
-  // Function to format the timer in minutes and seconds
-  const formatTime = (time) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  };
-
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <Card className="w-full max-w-3xl shadow-xl border border-gray-300 rounded-lg overflow-hidden h-[480px]">
-        <div className="flex h-full">
-          {/* Left Section */}
-          <div className="bg-[#393838] text-white flex flex-col justify-center items-center p-10 w-1/2">
-            <div className="text-4xl font-bold text-yellow-400">
-              [Drop #1]
+    <div className="flex justify-center items-center min-h-screen bg-white">
+      <Card className="w-full max-w-3xl shadow-xl border border-gray-300 rounded-lg overflow-hidden">
+        <div className="flex h-[480px]">
+          {/* Left side with Acme and Meta icon */}
+          <div className="w-1/2 bg-[#393838] text-white p-8 flex flex-col justify-between">
+            <div className="flex items-center">
+              <IconBrandMeta className="mr-2" size={30} />
+              <h1 className="text-2xl font-bold">Aximora</h1>
             </div>
-            <p className="mt-4 text-gray-300 italic text-center">
-              A platform about making a difference
-            </p>
-          </div>
-
-          {/* Right Section */}
-          <div className="w-1/2 bg-white p-10 flex flex-col justify-center">
-            <CardHeader className="text-center mb-6">
-              {/* Display time in minutes and seconds */}
-              <div className="text-5xl font-bold text-red-500">
-                {formatTime(timeLeft)}
-              </div>
-            </CardHeader>
-
-            <CardContent className="mb-4">
-              {/* Unlock Button */}
-              <Button 
-                className="w-full bg-[#393838] hover:bg-black text-white py-2 rounded-lg font-semibold"
-                onClick={handleUnlock} // Call handleUnlock function
-              >
-                Unlock the App
-              </Button>
-            </CardContent>
-
-            <CardFooter className="text-center mt-4">
-              <p className="text-gray-500 text-sm">
-                Don't know the password? DM us the word "Monday" on Instagram{" "}
+            <div>
+              <p className="text-sm ">
+                "This platform has saved me countless hours of work and helped me
+               implement stuff faster than ever before."
               </p>
-            </CardFooter>
+              <p className="mt-2 text-sm">Sofia Davis</p>
+            </div>
           </div>
+
+          {/* Right side with form */}
+          <CardContent className="w-1/2 p-8 bg-white flex flex-col justify-center">
+            <div className="flex-grow flex flex-col justify-center">
+              <h2 className="text-2xl font-bold mb-2 text-[#393838]">Unlock the app</h2>
+              <p className="text-sm mb-4 text-gray-500">
+                To unlock enter password
+              </p>
+              <Input 
+                type="password" 
+                placeholder="password" 
+                className="mb-4 placeholder-gray-500"
+              />
+              <Button className="w-full mb-4 bg-[#393838] hover:bg-[#393838]/90 text-white font-semibold">Unlock the app</Button>
+
+              <p className="text-xs mt-4 text-center text-gray-500">
+             To get password dm drop 1 on instagram
+              </p>
+            </div>
+          </CardContent>
         </div>
       </Card>
     </div>
@@ -73,3 +51,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
