@@ -8,9 +8,9 @@ import Trends from "./pages/trends"
 import BusinessCard from "./pages/BusinessCard"
 import Onboarding from "./pages/Onboarding"
 import Credentials from "./pages/credentials"
-import Userinfo from "./pages/userinfo"
-import Interests from "./pages/interests"
+
 import SignupForm from "./components/SignupForm"
+import Cardonboarding from "./pages/cardonboarding"
 export default function App(){
   return (
       <div>
@@ -25,10 +25,10 @@ export default function App(){
   <Route path="/trends"element ={<Trends/ >} />
   <Route path="/businesscard"element ={<BusinessCard/ >} />
   <Route path="/Onboarding"element ={<Onboarding/ >} />
+ 
   <Route path="/credentials"element ={<Credentials/ >} />
-  <Route path="/userinfo"element ={<Userinfo/ >} />
-  <Route path="/interests"element ={<Interests/ >} />
   <Route path="/signup"element ={<SignupForm/ >} />
+  <Route path="/cardonboarding"element ={<Cardonboarding/ >} />
   </Routes>
 </BrowserRouter>
 
