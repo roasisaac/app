@@ -1,35 +1,17 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
 import { IconBrandMeta } from '@tabler/icons-react';
-import { useState, useEffect } from "react";
-import { db } from "../firebase/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { useState } from "react";
 
 const LoginPage = () => {
   const [password, setPassword] = useState('');
 
-  useEffect(() => {
-    console.log("API Key:", "AIzaSyCfcyk476UDIn5lL96lad_OTKQhhCqjVTk");
-  }, []);
-
-  const handlePassword = (e) => {
+  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
     console.log(newPassword);
   }
-
-  const savePasswordToFirestore = async (password) => {
-    try {
-      const passwordRef = doc(db, "users", "userPassword");
-      await setDoc(passwordRef, {
-        Password: password,
-      });
-      console.log("Password saved to Firestore");
-    } catch (error) {
-      console.error("Error saving password: ", error);
-    }
-  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
@@ -64,7 +46,7 @@ const LoginPage = () => {
               />
               <Button
                 className="w-full mb-4 bg-[#393838] hover:bg-[#393838]/90 text-white font-semibold"
-                onClick={() => savePasswordToFirestore(password)}
+                onClick={() => console.log("Unlocking the app...")}
               >
                 Unlock the app
               </Button>
