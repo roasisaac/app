@@ -1,16 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
-import Profile from "./pages/profile"
+import Profile from "./pages/Profile"
 import Settings from "./pages/Settings"
-import Tresor from "./pages/tresor"
-import Activity from "./pages/Acitivity"
-import Trends from "./pages/trends"
+import Tresor from "./pages/Tresor"
+import Activity from "./pages/Acitivity" // Ensure the file exists and the path is correct
+import Trends from "./pages/Trends"
 import BusinessCard from "./pages/BusinessCard"
 import Onboarding from "./pages/Onboarding"
-import Credentials from "./pages/credentials"
-import Userinfo from "./pages/userinfo"
-import Interests from "./pages/interests"
-import TestComponent from "./test/TestComponent"
+import Credentials from "./pages/credentials" // Ensure the file exists and the path is correct
+
+import Cardonboarding from "./pages/cardonboarding" // Ensure the file exists and the path is correct
 export default function App() {
   return (
     <div>
@@ -26,9 +25,7 @@ export default function App() {
           <Route path="/businesscard" element={<BusinessCard />} />
           <Route path="/Onboarding" element={<Onboarding />} />
           <Route path="/credentials" element={<Credentials />} />
-          <Route path="/userinfo" element={<Userinfo />} />
-          <Route path="/interests" element={<Interests />} />
-          <Route path='/test' element={<TestComponent />} />
+          <Route path="/cardonboarding" element={<Cardonboarding />} />
         </Routes>
       </BrowserRouter>
 
